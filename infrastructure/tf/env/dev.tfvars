@@ -1,0 +1,7 @@
+env                  = "dev"
+google_secrets_arn   = ""
+google_sheet_id      = ""
+google_translate_key = ""
+s3_janes_bucket_name = ""
+s3_web_bucket_name   = ""
+vpc_cidr_block       = "10.0.0.0/20"

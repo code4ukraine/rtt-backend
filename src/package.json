@@ -1,0 +1,23 @@
+{
+  "name": "dataprocessing",
+  "version": "1.0.0",
+  "description": "Package to Update Data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Code4Ukraine Contributors",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/translate": "^6.3.1",
+    "async": "^3.2.3",
+    "aws-sdk": "^2.1087.0",
+    "csvtojson": "^2.0.10",
+    "google-spreadsheet": "^3.2.0",
+    "json-2-csv": "^3.17.0",
+    "json2csv": "^5.0.7",
+    "node-json-logger": "0.0.17",
+    "process": "^0.11.10",
+    "redis": "^4.0.4"
+  }
+}

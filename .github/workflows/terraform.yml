@@ -1,0 +1,62 @@
+name: "terraform"
+
+on:
+  push:
+    branches:
+      - main
+      - production
+  pull_request:
+    branches:
+      - main
+      - production
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  issues: write
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
+
+jobs:
+  call-dev-tf-plan:
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+    uses: code4ukraine/dataprocessing/.github/workflows/terraform-plan.yml@main
+    with:
+      env: dev
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.TF_AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_AWS_SECRET_ACCESS_KEY }}
+
+  call-production-tf-plan:
+    if: github.event_name == 'pull_request' && github.base_ref == 'production'
+    uses: code4ukraine/dataprocessing/.github/workflows/terraform-plan.yml@main
+    with:
+      env: production
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.TF_AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_AWS_SECRET_ACCESS_KEY }}
+
+  call-dev-tf-apply:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    uses: code4ukraine/dataprocessing/.github/workflows/terraform-apply.yml@main
+    with:
+      env: dev
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.TF_AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_AWS_SECRET_ACCESS_KEY }}
+
+  call-production-tf-apply:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/production'
+    uses: code4ukraine/dataprocessing/.github/workflows/terraform-apply.yml@main
+    with:
+      env: production
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.TF_AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_AWS_SECRET_ACCESS_KEY }}

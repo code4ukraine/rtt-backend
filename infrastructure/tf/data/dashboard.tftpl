@@ -1,0 +1,128 @@
+{
+    "start": "-PT3H",
+    "widgets": [
+        {
+            "height": 5,
+            "width": 24,
+            "y": 3,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "FILL(METRICS(), 0)", "label": "", "id": "e1" } ],
+                    [ "AWS/Lambda", "Invocations", "FunctionName", "${env}-dataprocessing", { "color": "#2ca02c", "id": "m1", "visible": false } ],
+                    [ ".", "Errors", ".", ".", { "color": "#d62728", "id": "m2", "visible": false } ]
+                ],
+                "legend": {
+                    "position": "bottom"
+                },
+                "region": "us-east-2",
+                "liveData": false,
+                "title": "Invocations: Sum",
+                "view": "timeSeries",
+                "stacked": false,
+                "period": 300,
+                "stat": "Sum",
+                "yAxis": {
+                    "left": {
+                        "min": 0
+                    }
+                }
+            }
+        },
+        {
+            "height": 11,
+            "width": 24,
+            "y": 19,
+            "x": 0,
+            "type": "log",
+            "properties": {
+                "query": "SOURCE '/aws/lambda/${env}-dataprocessing' | fields @message\n| sort @timestamp desc\n| limit 50",
+                "region": "us-east-2",
+                "stacked": false,
+                "title": "Log group: /aws/lambda/${env}-dataprocessing",
+                "view": "table"
+            }
+        },
+        {
+            "height": 5,
+            "width": 24,
+            "y": 8,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "FILL(METRICS(), REPEAT)", "label": "Expression1", "id": "e1" } ],
+                    [ "AWS/Lambda", "Duration", "FunctionName", "${env}-dataprocessing", { "id": "m1", "visible": false } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-2",
+                "stat": "Average",
+                "period": 300,
+                "yAxis": {
+                    "left": {
+                        "label": "duration",
+                        "min": 0,
+                        "showUnits": true
+                    }
+                }
+            }
+        },
+        {
+            "height": 3,
+            "width": 15,
+            "y": 0,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "m2 / SUM(METRICS()) * 100", "label": "Availability", "id": "e1", "region": "us-east-2", "color": "#1f77b4" } ],
+                    [ "AWS/Lambda", "Errors", "FunctionName", "${env}-dataprocessing", { "id": "m1", "color": "#d62728" } ],
+                    [ ".", "Invocations", ".", ".", { "id": "m2", "label": "Success" } ]
+                ],
+                "view": "singleValue",
+                "region": "us-east-2",
+                "stat": "Sum",
+                "period": 2592000,
+                "title": "Summary"
+            }
+        },
+        {
+            "height": 3,
+            "width": 6,
+            "y": 0,
+            "x": 15,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/Lambda", "Duration", "FunctionName", "${env}-dataprocessing", { "label": "Duration p99" } ]
+                ],
+                "view": "singleValue",
+                "region": "us-east-2",
+                "stat": "p99",
+                "period": 2592000
+            }
+        },
+        {
+            "height": 6,
+            "width": 24,
+            "y": 13,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "FILL(METRICS(), REPEAT)", "label": "", "id": "e1" } ],
+                    [ "dataprocessing", "dataPoints", "environment", "${env}", "source", "userUpload", { "id": "m1", "visible": false } ],
+                    [ "...", "vendorJanes", { "id": "m2", "visible": false } ]
+                ],
+                "view": "timeSeries",
+                "stacked": true,
+                "region": "us-east-2",
+                "stat": "Average",
+                "period": 300,
+                "title": "data.json data points"
+            }
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "https://data.janes.com/events/lV0IF",
+    "lat": 50.585756,
+    "lng": 30.838743,
+    "title": "UAV footage posted to social media shows a Russian armoured column withdrawing from BROVARY while under fire",
+    "timestamp": "2022-03-10",
+    "timestamp_confidence": "24h",
+    "rtt_event_type": "Sighting",
+    "description": "UAV footage posted to social media shows a Russian armoured column withdrawing from BROVARY while under fire. Ukrainian military intelligence claims the column was comprised of forces from the 6TH TANK REGIMENT and the combat resulted in the death of the regiment's commander - Colonel Zakharov."
+  },
+  {
+    "id": "https://data.janes.com/events/lV3jX",
+    "lat": 51.240908,
+    "lng": 29.386975,
+    "title": "Russian forces continue to hold POLISKE",
+    "timestamp": "2022-03-10",
+    "timestamp_confidence": "24h",
+    "rtt_event_type": "Combat",
+    "description": "The Ukrainian Ministry of Defence reports Russian forces continue to hold POLISKE."
+  }
+]
